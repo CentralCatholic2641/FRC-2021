@@ -5,9 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
+// import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.DrivingSubsystem;
+import frc.robot.subsystems.Driving;
 import frc.robot.vision.BallSearch;
 
 /**
@@ -19,7 +19,7 @@ import frc.robot.vision.BallSearch;
  */
 public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
-  public static DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
+  public static Driving drivingSubsystem = new Driving();
   public static BallSearch ballSearcher = new BallSearch();
 
   /**
@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
+    robotContainer = new RobotContainer();
   }
   
   @Override
@@ -65,9 +65,9 @@ public class Robot extends TimedRobot {
     // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    // if (autonomousCommand != null) {
+    //   autonomousCommand.schedule();
+    // }
   }
 
   /** This function is called periodically during autonomous. */
@@ -81,9 +81,9 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
+    // if (m_autonomousCommand != null) {
+    //   m_autonomousCommand.cancel();
+    // }
   }
 
   /** This function is called periodically during operator control. */
