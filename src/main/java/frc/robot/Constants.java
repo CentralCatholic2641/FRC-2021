@@ -16,12 +16,26 @@ package frc.robot;
  */
 public final class Constants {
 
-	public static int gamepad1port = 0;
-	public static int gamepad2port = 1;
-	public static int leftmotor1 = 1;
-	public static int leftmotor2;
-	public static int leftmotor3;
-	public static int rightmotor1;
-	public static int rightmotor2;
-	public static int rightmotor3;
+	// A button on joystick 0
+	public static final int aButtonJoystick0 = 1;
+
+	// B button on joystick 0
+	public static final int bButtonJoystick0 = 2;
+
+	// X button on Joystick 0
+	public static final int xButtonJoystick0 = 3;
+
+	// Y button on Joystick 0
+	public static final int yButtonJoystic0 = 4;
+
+	public static final int joystickPort1 = 1;
+	public static final int joystickPort2 = 5;
+	public static final int gamepad1port = 0;
+	public static final int gamepad2port = 1;
+	public static final int leftmotor1 = 1;
+	public static final int leftmotor2 = 2;
+	public static final int leftmotor3 = 3;
+	public static final int rightmotor1 = 4;
+	public static final int rightmotor2 = 5;
+	public static final int rightmotor3 = 6;
 }

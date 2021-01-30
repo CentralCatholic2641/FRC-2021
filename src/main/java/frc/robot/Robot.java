@@ -7,8 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 // import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.Driving;
-import frc.robot.vision.BallSearch;
+import frc.robot.subsystems.DrivingSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,8 +18,8 @@ import frc.robot.vision.BallSearch;
  */
 public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
-  public static Driving drivingSubsystem = new Driving();
-  public static BallSearch ballSearcher = new BallSearch();
+  public static DrivingSubsystem drivingSubsystem = new DrivingSubsystem(); 
+
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -33,7 +32,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     robotContainer = new RobotContainer();
   }
-  
+
   @Override
   public void robotPeriodic() {
     // Runs the Scheduler. This is responsible for polling buttons, adding
@@ -44,7 +43,6 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    System.out.println(ballSearcher.findBlobsOutput().size());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -66,7 +64,7 @@ public class Robot extends TimedRobot {
 
     // schedule the autonomous command (example)
     // if (autonomousCommand != null) {
-    //   autonomousCommand.schedule();
+    // autonomousCommand.schedule();
     // }
   }
 
@@ -82,9 +80,10 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
     // if (m_autonomousCommand != null) {
-    //   m_autonomousCommand.cancel();
+    // m_autonomousCommand.cancel();
     // }
-  }
+    
+}
 
   /** This function is called periodically during operator control. */
   @Override
