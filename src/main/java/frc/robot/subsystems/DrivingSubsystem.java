@@ -27,11 +27,11 @@ public class DrivingSubsystem extends SubsystemBase {
   public WPI_TalonSRX rightmotor3 = new WPI_TalonSRX(Constants.rightmotor3);
 
   public SpeedControllerGroup rightgroup = new SpeedControllerGroup(rightmotor1, rightmotor2, rightmotor3);
-
+  
   DifferentialDrive differentialDrive = new DifferentialDrive(leftgroup, rightgroup);
 
   public void oDrive(double y1, double y2) {
-    differentialDrive.tankDrive(y1, y2, true);
+    differentialDrive.tankDrive(-y1, -y2, true);
   }
 
   /** Creates a new Driving. */

@@ -9,6 +9,7 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class DrivingCommand extends CommandBase {
+
   /** Creates a new Driving. */
   public DrivingCommand() {
     addRequirements(Robot.drivingSubsystem);
@@ -19,12 +20,12 @@ public class DrivingCommand extends CommandBase {
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
-  double joystick1 = Robot.robotContainer.gamepad1.getRawAxis(Constants.joystickPort1);
-  double joystick2 = Robot.robotContainer.gamepad1.getRawAxis(Constants.joystickPort2);
-
+  
   @Override
   public void execute() {
+    // Called every time the scheduler runs while the command is scheduled.
+    double joystick1 = Robot.robotContainer.gamepad1.getRawAxis(Constants.joystickPort1);
+    double joystick2 = Robot.robotContainer.gamepad1.getRawAxis(Constants.joystickPort2);
     Robot.drivingSubsystem.oDrive(joystick1, joystick2); 
   }
 

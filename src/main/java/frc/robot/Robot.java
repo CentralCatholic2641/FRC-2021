@@ -5,8 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-// import edu.wpi.first.wpilibj2.command.Command;
+//import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.DrivingCommand;
 import frc.robot.subsystems.DrivingSubsystem;
 
 /**
@@ -18,7 +19,9 @@ import frc.robot.subsystems.DrivingSubsystem;
  */
 public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
-  public static DrivingSubsystem drivingSubsystem = new DrivingSubsystem(); 
+  public static DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
+  public static DrivingCommand drivingCommand = new DrivingCommand();
+  
 
 
   /**
@@ -30,7 +33,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our
     // autonomous chooser on the dashboard.
-    robotContainer = new RobotContainer();
+    robotContainer= new RobotContainer();
   }
 
   @Override
@@ -83,6 +86,7 @@ public class Robot extends TimedRobot {
     // m_autonomousCommand.cancel();
     // }
     
+
 }
 
   /** This function is called periodically during operator control. */
