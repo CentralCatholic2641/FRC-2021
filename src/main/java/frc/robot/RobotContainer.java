@@ -5,6 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.IntakeCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -17,6 +19,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public Joystick gamepad1 = new Joystick(Constants.gamepad1port);
   public Joystick gamepad2 = new Joystick(Constants.gamepad2port);
+
+  public JoystickButton intakeButton = new JoystickButton(gamepad1, Constants.aButtonJoystick0);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -33,6 +37,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    intakeButton.whileHeld(new IntakeCommand(), true);
   }
 
   /**

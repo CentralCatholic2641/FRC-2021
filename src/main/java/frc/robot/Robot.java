@@ -5,10 +5,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-//import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.AutoCommandGroup;
 import frc.robot.commands.DrivingCommand;
 import frc.robot.subsystems.DrivingSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -18,8 +20,12 @@ import frc.robot.subsystems.DrivingSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  Command autoCommand;
+
   public static RobotContainer robotContainer;
   public static DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
+  public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+
   public static DrivingCommand drivingCommand = new DrivingCommand();
   
 
@@ -33,7 +39,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our
     // autonomous chooser on the dashboard.
-    robotContainer= new RobotContainer();
+    autoCommand = new AutoCommandGroup();
+    robotContainer = new RobotContainer();
   }
 
   @Override
@@ -69,11 +76,14 @@ public class Robot extends TimedRobot {
     // if (autonomousCommand != null) {
     // autonomousCommand.schedule();
     // }
+    CommandScheduler.getInstance().registerSubsystem(drivingSubsystem);
+    if (autoCommand != null) autoCommand.schedule();
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+    CommandScheduler.getInstance().run();
   }
 
   @Override
@@ -85,9 +95,9 @@ public class Robot extends TimedRobot {
     // if (m_autonomousCommand != null) {
     // m_autonomousCommand.cancel();
     // }
-    
+      if (autoCommand != null) autoCommand.cancel();
 
-}
+  }
 
   /** This function is called periodically during operator control. */
   @Override

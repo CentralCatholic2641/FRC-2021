@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
 import frc.robot.commands.DrivingCommand;
 
 public class DrivingSubsystem extends SubsystemBase {
@@ -27,10 +26,17 @@ public class DrivingSubsystem extends SubsystemBase {
   public WPI_TalonSRX rightmotor3 = new WPI_TalonSRX(Constants.rightmotor3);
 
   public SpeedControllerGroup rightgroup = new SpeedControllerGroup(rightmotor1, rightmotor2, rightmotor3);
+
+  public WPI_TalonSRX leftEncoder = new WPI_TalonSRX(Constants.leftEncoder);
+  public WPI_TalonSRX rightEncoder = new WPI_TalonSRX(Constants.rightEncoder);
   
   DifferentialDrive differentialDrive = new DifferentialDrive(leftgroup, rightgroup);
 
   public void oDrive(double y1, double y2) {
+    differentialDrive.arcadeDrive(-y1, y2, true);
+  }
+
+  public void tDrive(double y1, double y2) {
     differentialDrive.tankDrive(-y1, -y2, true);
   }
 
