@@ -39,13 +39,15 @@ public class AutoCommand extends CommandBase {
   public void execute() {
     // LEFT
     lDistanceTravelled = -((Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition() / Constants.oneRotation) * (Math.PI * Constants.wheelDiameter));
+    System.out.println("leftEncoder: " + Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition());
     lError = setpoint - lDistanceTravelled;
     lErrorI += lError;
     lErrorI *= 0.95;
     lOutput = (Constants.kP * lError) + (Constants.kI * lErrorI);
 
     // RIGHT
-    rDistanceTravelled = -((Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition() / Constants.oneRotation) * (Math.PI * Constants.wheelDiameter));
+    rDistanceTravelled = ((Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition() / Constants.oneRotation) * (Math.PI * Constants.wheelDiameter));
+    System.out.println("rightEncoder: " + Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition());
     rError = setpoint - rDistanceTravelled;
     rErrorI += rError;
     rErrorI *= 0.95;
@@ -59,11 +61,12 @@ public class AutoCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    System.out.println(lOutput);
     if (lOutput > 0.01 || rOutput > 0.01) {
-      double newlOutput = lOutput / 50;
-      double newrOutput = rOutput / 50;
+      double newlOutput = lOutput / 10;
+      double newrOutput = rOutput / 10;
       System.out.println("Left output: " + lOutput + ", Right output: " + rOutput);
-      Robot.drivingSubsystem.tDrive(newlOutput, newrOutput);
+      Robot.drivingSubsystem.tDrive(-(newlOutput), -(newrOutput));
       return false;
     } else {
       Robot.drivingSubsystem.tDrive(0, 0);

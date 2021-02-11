@@ -36,8 +36,8 @@ public class DrivingSubsystem extends SubsystemBase {
     differentialDrive.arcadeDrive(-y1, y2, true);
   }
 
-  public void tDrive(double y1, double y2) {
-    differentialDrive.tankDrive(-y1, -y2, true);
+  public void tDrive(double left, double right) {
+    differentialDrive.tankDrive(-left * 0.98, -right * 0.93, true);
   }
 
   /** Creates a new Driving. */

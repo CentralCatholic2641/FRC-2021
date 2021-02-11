@@ -41,8 +41,8 @@ public final class Constants {
 	public static final int intakeMotor = 10;
 
 	// ENCODERS
-	public static final int leftEncoder = 1;
-	public static final int rightEncoder = 4;
+	public static final int leftEncoder = 2;
+	public static final int rightEncoder = 5;
 
 	// PID
 	public static final double kP = 0.1;
