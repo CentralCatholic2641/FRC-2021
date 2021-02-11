@@ -14,7 +14,8 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public WPI_TalonSRX intakeMotor = new WPI_TalonSRX(Constants.intakeMotor);
 
-  public IntakeSubsystem() {}
+  public IntakeSubsystem() {
+  }
 
   public void DriveIntakeMotor(double speed) {
     intakeMotor.set(speed);

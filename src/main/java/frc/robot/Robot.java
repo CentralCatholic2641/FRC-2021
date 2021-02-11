@@ -27,8 +27,6 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   public static DrivingCommand drivingCommand = new DrivingCommand();
-  
-
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -77,7 +75,8 @@ public class Robot extends TimedRobot {
     // autonomousCommand.schedule();
     // }
     CommandScheduler.getInstance().registerSubsystem(drivingSubsystem);
-    if (autoCommand != null) autoCommand.schedule();
+    if (autoCommand != null)
+      autoCommand.schedule();
   }
 
   /** This function is called periodically during autonomous. */
@@ -95,7 +94,8 @@ public class Robot extends TimedRobot {
     // if (m_autonomousCommand != null) {
     // m_autonomousCommand.cancel();
     // }
-      if (autoCommand != null) autoCommand.cancel();
+    if (autoCommand != null)
+      autoCommand.cancel();
 
   }
 

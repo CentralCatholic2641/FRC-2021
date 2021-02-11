@@ -29,7 +29,7 @@ public class DrivingSubsystem extends SubsystemBase {
 
   public WPI_TalonSRX leftEncoder = new WPI_TalonSRX(Constants.leftEncoder);
   public WPI_TalonSRX rightEncoder = new WPI_TalonSRX(Constants.rightEncoder);
-  
+
   DifferentialDrive differentialDrive = new DifferentialDrive(leftgroup, rightgroup);
 
   public void oDrive(double y1, double y2) {
@@ -45,7 +45,7 @@ public class DrivingSubsystem extends SubsystemBase {
   }
 
   public void periodic() {
-    // This method will be called once per scheduler 
+    // This method will be called once per scheduler
     setDefaultCommand(new DrivingCommand());
   }
 }

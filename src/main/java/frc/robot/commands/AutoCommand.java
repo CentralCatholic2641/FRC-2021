@@ -15,9 +15,13 @@ public class AutoCommand extends CommandBase {
   double lErrorI = 0;
   double rErrorI = 0;
   double lDistanceTravelled;
-  double lError;
   double rDistanceTravelled;
+  double lError;
   double rError;
+  double lErrorPrevious = 0;
+  double rErrorPrevious = 0;
+  double lD;
+  double rD;
   double setpoint;
 
   /** Creates a new AutoCommand. */
@@ -38,25 +42,30 @@ public class AutoCommand extends CommandBase {
   @Override
   public void execute() {
     // LEFT
-    lDistanceTravelled = -((Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition() / Constants.oneRotation) * (Math.PI * Constants.wheelDiameter));
+    lDistanceTravelled = -((Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition() / Constants.oneRotation)
+        * (Math.PI * Constants.wheelDiameter));
     System.out.println("leftEncoder: " + Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition());
     lError = setpoint - lDistanceTravelled;
     lErrorI += lError;
     lErrorI *= 0.95;
-    lOutput = (Constants.kP * lError) + (Constants.kI * lErrorI);
+    lD = (lError - lErrorPrevious) / .02;
+    lOutput = (Constants.kP * lError) + (Constants.kI * lErrorI) + (Constants.kD * lD);
 
     // RIGHT
-    rDistanceTravelled = ((Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition() / Constants.oneRotation) * (Math.PI * Constants.wheelDiameter));
+    rDistanceTravelled = ((Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition() / Constants.oneRotation)
+        * (Math.PI * Constants.wheelDiameter));
     System.out.println("rightEncoder: " + Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition());
     rError = setpoint - rDistanceTravelled;
     rErrorI += rError;
     rErrorI *= 0.95;
-    rOutput = (Constants.kP * rError) + (Constants.kI * rErrorI);
+    rD = (rError - rErrorPrevious) / .02;
+    rOutput = (Constants.kP * rError) + (Constants.kI * rErrorI) + (Constants.kD * rD);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
