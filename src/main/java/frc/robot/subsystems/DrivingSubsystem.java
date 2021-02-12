@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.kauailabs.navx.frc.AHRS;
 import frc.robot.Constants;
 import frc.robot.commands.DrivingCommand;
 
@@ -32,6 +33,8 @@ public class DrivingSubsystem extends SubsystemBase {
 
   DifferentialDrive differentialDrive = new DifferentialDrive(leftgroup, rightgroup);
 
+  public AHRS ahrs;
+
   public void oDrive(double y1, double y2) {
     differentialDrive.arcadeDrive(-y1, y2, true);
   }
@@ -42,6 +45,7 @@ public class DrivingSubsystem extends SubsystemBase {
 
   /** Creates a new Driving. */
   public DrivingSubsystem() {
+    ahrs = new AHRS();
   }
 
   public void periodic() {

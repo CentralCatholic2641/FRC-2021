@@ -10,19 +10,19 @@ import frc.robot.Constants;
 
 public class AutoCommand extends CommandBase {
 
-  double lOutput;
-  double rOutput;
-  double lErrorI = 0;
-  double rErrorI = 0;
-  double lDistanceTravelled;
-  double rDistanceTravelled;
-  double lError;
-  double rError;
+  double lOutput = 0;
+  double rOutput = 0;
+  double lI = 0;
+  double rI = 0;
+  double lDistanceTravelled = 0;
+  double rDistanceTravelled = 0;
+  double lError = 0;
+  double rError = 0;
   double lErrorPrevious = 0;
   double rErrorPrevious = 0;
-  double lD;
-  double rD;
-  double setpoint;
+  double lD = 0;
+  double rD = 0;
+  double setpoint = 0;
 
   /** Creates a new AutoCommand. */
   public AutoCommand(double distance) {
@@ -44,22 +44,24 @@ public class AutoCommand extends CommandBase {
     // LEFT
     lDistanceTravelled = -((Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition() / Constants.oneRotation)
         * (Math.PI * Constants.wheelDiameter));
-    System.out.println("leftEncoder: " + Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition());
     lError = setpoint - lDistanceTravelled;
-    lErrorI += lError;
-    lErrorI *= 0.95;
+    System.out.println("lError: " + lError);
+    lI += (lError * 0.95);
     lD = (lError - lErrorPrevious) / .02;
-    lOutput = (Constants.kP * lError) + (Constants.kI * lErrorI) + (Constants.kD * lD);
+    lOutput = (Constants.kP * lError) + (Constants.kI * lI) + (Constants.kD * lD);
+    // lOutput = (Constants.kP * lError) + (Constants.kI * lI);
+    lErrorPrevious = lError;
 
     // RIGHT
-    rDistanceTravelled = ((Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition() / Constants.oneRotation)
-        * (Math.PI * Constants.wheelDiameter));
-    System.out.println("rightEncoder: " + Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition());
-    rError = setpoint - rDistanceTravelled;
-    rErrorI += rError;
-    rErrorI *= 0.95;
-    rD = (rError - rErrorPrevious) / .02;
-    rOutput = (Constants.kP * rError) + (Constants.kI * rErrorI) + (Constants.kD * rD);
+    // rDistanceTravelled = ((Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition() / Constants.oneRotation)
+    //     * (Math.PI * Constants.wheelDiameter));
+    // System.out.println("rightEncoder: " + Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition());
+    // rError = setpoint - rDistanceTravelled;
+    // rErrorI += rError;
+    // rErrorI *= 0.95;
+    // rD = (rError - rErrorPrevious) / .02;
+    // rOutput = (Constants.kP * rError) + (Constants.kI * rErrorI) + (Constants.kD * rD);
+    // rErrorPrevious = rError;
   }
 
   // Called once the command ends or is interrupted.
@@ -70,12 +72,12 @@ public class AutoCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println(lOutput);
-    if (lOutput > 0.01 || rOutput > 0.01) {
-      double newlOutput = lOutput / 10;
-      double newrOutput = rOutput / 10;
-      System.out.println("Left output: " + lOutput + ", Right output: " + rOutput);
-      Robot.drivingSubsystem.tDrive(-(newlOutput), -(newrOutput));
+    System.out.println("Left output: " + lOutput / 1.15);
+    if (Math.abs(lError) > 0.1) {
+      // double newlOutput = lOutput / 10;
+      // double newrOutput = rOutput / 10;
+      // Robot.drivingSubsystem.tDrive(-(newlOutput), -(newrOutput));
+      Robot.drivingSubsystem.oDrive(-lOutput / 1.15, 0);
       return false;
     } else {
       Robot.drivingSubsystem.tDrive(0, 0);

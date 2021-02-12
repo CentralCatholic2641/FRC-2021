@@ -9,6 +9,7 @@ import frc.robot.Robot;
 
 public class TurnAround extends CommandBase {
   double desiredAngle;
+  double current;
 
   /** Creates a new TurnAround. */
   public TurnAround(double angle) {
@@ -20,21 +21,32 @@ public class TurnAround extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.drivingSubsystem.ahrs.zeroYaw();
   }
-
+  
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    current = Math.round(Robot.drivingSubsystem.ahrs.getYaw());
+    System.out.println("yaw: " + current + ", desiredAngle: " + desiredAngle);
   }
-
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    System.out.println("ended");
   }
-
+  
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if (current != desiredAngle) {
+      Robot.drivingSubsystem.oDrive(0, 0.4);
+      return false;
+    } else {
+      Robot.drivingSubsystem.oDrive(0, 0);
+      System.out.println("isFinished");
+      return true;
+    }
   }
 }
