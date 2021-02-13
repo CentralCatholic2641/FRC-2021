@@ -36,7 +36,12 @@ public class DrivingSubsystem extends SubsystemBase {
   public AHRS ahrs;
 
   public void oDrive(double y1, double y2) {
-    differentialDrive.arcadeDrive(-y1, y2, true);
+    System.out.println(y1);
+    if (Math.abs(y2) < 0.1 && Math.abs(y1) > 0.1) { 
+      differentialDrive.arcadeDrive(-y1, 0.15, true);
+    } else {
+      differentialDrive.arcadeDrive(-y1, y2, true);
+    }
   }
 
   public void tDrive(double left, double right) {

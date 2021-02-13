@@ -11,6 +11,7 @@ import frc.robot.commands.AutoCommandGroup;
 import frc.robot.commands.DrivingCommand;
 import frc.robot.subsystems.DrivingSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.NolanIntakeSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,9 +26,8 @@ public class Robot extends TimedRobot {
   public static RobotContainer robotContainer;
   public static DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-
   public static DrivingCommand drivingCommand = new DrivingCommand();
-
+  public static NolanIntakeSubsystem nolanIntakeSubsystem = new NolanIntakeSubsystem();
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -37,10 +37,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer. This will perform all our button bindings,
     // and put our
     // autonomous chooser on the dashboard.
-    autoCommand = new AutoCommandGroup();
     robotContainer = new RobotContainer();
   }
-
+  
   @Override
   public void robotPeriodic() {
     // Runs the Scheduler. This is responsible for polling buttons, adding
@@ -52,16 +51,16 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
   }
-
+  
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
   }
-
+  
   @Override
   public void disabledPeriodic() {
   }
-
+  
   /**
    * This autonomous runs the autonomous command selected by your
    * {@link RobotContainer} class.
@@ -69,17 +68,18 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+    
     // schedule the autonomous command (example)
     // if (autonomousCommand != null) {
-    // autonomousCommand.schedule();
-    // }
-    CommandScheduler.getInstance().registerSubsystem(drivingSubsystem);
-    if (autoCommand != null)
+      // autonomousCommand.schedule();
+      // }
+      autoCommand = new AutoCommandGroup();
+      CommandScheduler.getInstance().registerSubsystem(drivingSubsystem);
+      if (autoCommand != null)
       autoCommand.schedule();
-  }
-
-  /** This function is called periodically during autonomous. */
+    }
+    
+    /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
     CommandScheduler.getInstance().run();

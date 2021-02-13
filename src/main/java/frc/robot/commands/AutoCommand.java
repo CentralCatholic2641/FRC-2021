@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.Constants;
@@ -36,17 +37,19 @@ public class AutoCommand extends CommandBase {
   public void initialize() {
     Robot.drivingSubsystem.leftEncoder.setSelectedSensorPosition(0);
     Robot.drivingSubsystem.rightEncoder.setSelectedSensorPosition(0);
+    Robot.drivingSubsystem.ahrs.zeroYaw();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     // LEFT
+    SmartDashboard.putNumber("axis", Math.abs(Robot.drivingSubsystem.ahrs.getAngle()));
     lDistanceTravelled = -((Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition() / Constants.oneRotation)
         * (Math.PI * Constants.wheelDiameter));
     lError = setpoint - lDistanceTravelled;
     System.out.println("lError: " + lError);
-    lI += (lError * 0.95);
+    lI += (lError * 1);
     lD = (lError - lErrorPrevious) / .02;
     lOutput = (Constants.kP * lError) + (Constants.kI * lI) + (Constants.kD * lD);
     // lOutput = (Constants.kP * lError) + (Constants.kI * lI);
@@ -72,12 +75,12 @@ public class AutoCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("Left output: " + lOutput / 1.15);
-    if (Math.abs(lError) > 0.1) {
+    System.out.println("Left output: " + lOutput / 10);
+    if (Math.abs(lError) > 0.01) {
       // double newlOutput = lOutput / 10;
       // double newrOutput = rOutput / 10;
       // Robot.drivingSubsystem.tDrive(-(newlOutput), -(newrOutput));
-      Robot.drivingSubsystem.oDrive(-lOutput / 1.15, 0);
+      Robot.drivingSubsystem.oDrive(-lOutput / 10, 0);
       return false;
     } else {
       Robot.drivingSubsystem.tDrive(0, 0);

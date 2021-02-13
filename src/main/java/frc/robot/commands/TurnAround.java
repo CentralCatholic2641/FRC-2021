@@ -27,8 +27,8 @@ public class TurnAround extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    current = Math.round(Robot.drivingSubsystem.ahrs.getYaw());
-    System.out.println("yaw: " + current + ", desiredAngle: " + desiredAngle);
+    current = Math.round(Robot.drivingSubsystem.ahrs.getAngle());
+    System.out.println("angle: " + current);
   }
   
   // Called once the command ends or is interrupted.
@@ -41,7 +41,7 @@ public class TurnAround extends CommandBase {
   @Override
   public boolean isFinished() {
     if (current != desiredAngle) {
-      Robot.drivingSubsystem.oDrive(0, 0.4);
+      Robot.drivingSubsystem.oDrive(0, (int) Math.signum(desiredAngle) * 0.4);
       return false;
     } else {
       Robot.drivingSubsystem.oDrive(0, 0);

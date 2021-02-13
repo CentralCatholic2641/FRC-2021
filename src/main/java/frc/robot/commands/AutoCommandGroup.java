@@ -14,6 +14,6 @@ public class AutoCommandGroup extends SequentialCommandGroup {
   public AutoCommandGroup() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new AutoCommand(10.0), new TurnAround(179.0), new AutoCommand(10.0));
+    addCommands(new AutoCommand(30.0));
   }
 }
