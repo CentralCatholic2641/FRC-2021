@@ -16,40 +16,46 @@ package frc.robot;
  */
 public final class Constants {
 
-	// A button on joystick 0
-	public static final int aButtonJoystick0 = 1;
+	// A button
+	public static final int aButton = 1;
 
-	// B button on joystick 0
-	public static final int bButtonJoystick0 = 2;
+	// B button
+	public static final int bButton = 2;
 
-	// X button on Joystick 0
-	public static final int xButtonJoystick0 = 3;
+	// X button
+	public static final int xButton = 3;
 
-	// Y button on Joystick 0
-	public static final int yButtonJoystic0 = 4;
+	// Y button
+	public static final int yButton = 4;
 
-	public static final int joystickPort1 = 1;
-	public static final int joystickPort2 = 4;
-	public static final int gamepad1port = 0;
-	public static final int gamepad2port = 1;
+	// Joysticks
+	public static final int joystick1 = 1;
+	public static final int joystick2 = 4;
+
+	// Controllers
+	public static final int gamepad1 = 0;
+	public static final int gamepad2 = 1;
+
+	// Drivetrain motors
 	public static final int leftmotor1 = 1;
 	public static final int leftmotor2 = 2;
 	public static final int leftmotor3 = 3;
 	public static final int rightmotor1 = 4;
 	public static final int rightmotor2 = 5;
 	public static final int rightmotor3 = 6;
+
+	// Miscellaneous motors
 	public static final int intakeMotor = 10;
 
-	// ENCODERS
+	// Encoders
 	public static final int leftEncoder = 2;
 	public static final int rightEncoder = 5;
 
-	// PID
+	// PID-related
 	public static final double kP = 0.8;
 	public static final double kI = 0;
 	public static final double kD = 0;
-	public static final double kF = 0;
 	public static final double wheelDiameter = 0.5;
-	public static final int percentTolerance = 15;
+	public static final double driftCompensation = 1;
 	public static final int oneRotation = 4096;
 }

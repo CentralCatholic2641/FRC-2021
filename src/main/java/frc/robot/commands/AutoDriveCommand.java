@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.Constants;
 
-public class AutoCommand extends CommandBase {
+public class AutoDriveCommand extends CommandBase {
 
   double lOutput = 0;
   double rOutput = 0;
@@ -26,7 +26,7 @@ public class AutoCommand extends CommandBase {
   double setpoint = 0;
 
   /** Creates a new AutoCommand. */
-  public AutoCommand(double distance) {
+  public AutoDriveCommand(double distance) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivingSubsystem);
     setpoint = distance;
@@ -43,7 +43,7 @@ public class AutoCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // LEFT
+    // DISTANCE
     SmartDashboard.putNumber("axis", Math.abs(Robot.drivingSubsystem.ahrs.getAngle()));
     lDistanceTravelled = -((Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition() / Constants.oneRotation)
         * (Math.PI * Constants.wheelDiameter));
@@ -55,16 +55,8 @@ public class AutoCommand extends CommandBase {
     // lOutput = (Constants.kP * lError) + (Constants.kI * lI);
     lErrorPrevious = lError;
 
-    // RIGHT
-    // rDistanceTravelled = ((Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition() / Constants.oneRotation)
-    //     * (Math.PI * Constants.wheelDiameter));
-    // System.out.println("rightEncoder: " + Robot.drivingSubsystem.rightEncoder.getSelectedSensorPosition());
-    // rError = setpoint - rDistanceTravelled;
-    // rErrorI += rError;
-    // rErrorI *= 0.95;
-    // rD = (rError - rErrorPrevious) / .02;
-    // rOutput = (Constants.kP * rError) + (Constants.kI * rErrorI) + (Constants.kD * rD);
-    // rErrorPrevious = rError;
+    // DRIFT
+    System.out.println("gyro: " + Robot.drivingSubsystem.ahrs.getAngle());
   }
 
   // Called once the command ends or is interrupted.

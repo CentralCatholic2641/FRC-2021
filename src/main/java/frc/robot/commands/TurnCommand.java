@@ -7,12 +7,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class TurnAround extends CommandBase {
+public class TurnCommand extends CommandBase {
   double desiredAngle;
   double current;
 
-  /** Creates a new TurnAround. */
-  public TurnAround(double angle) {
+  /** Creates a new TurnCommand. */
+  public TurnCommand(double angle) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivingSubsystem);
     desiredAngle = angle;
@@ -41,7 +41,7 @@ public class TurnAround extends CommandBase {
   @Override
   public boolean isFinished() {
     if (current != desiredAngle) {
-      Robot.drivingSubsystem.oDrive(0, (int) Math.signum(desiredAngle) * 0.4);
+      Robot.drivingSubsystem.oDrive(0, (int) Math.signum(desiredAngle) * 0.8);
       return false;
     } else {
       Robot.drivingSubsystem.oDrive(0, 0);

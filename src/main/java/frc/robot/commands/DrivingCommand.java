@@ -26,8 +26,8 @@ public class DrivingCommand extends CommandBase {
   public void execute() {
     // Called every time the scheduler runs while the command is scheduled.
     SmartDashboard.putNumber("axis", Robot.drivingSubsystem.ahrs.getAngle());
-    double joystick1 = Robot.robotContainer.gamepad1.getRawAxis(Constants.joystickPort1);
-    double joystick2 = Robot.robotContainer.gamepad1.getRawAxis(Constants.joystickPort2);
+    double joystick1 = Robot.robotContainer.gamepad1.getRawAxis(Constants.joystick1);
+    double joystick2 = Robot.robotContainer.gamepad1.getRawAxis(Constants.joystick2);
     Robot.drivingSubsystem.oDrive(joystick1, joystick2);
   }
 

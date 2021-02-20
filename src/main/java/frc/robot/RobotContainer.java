@@ -7,7 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.IntakeCommand;
-import frc.robot.commands.NolanIntakeCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -18,10 +17,10 @@ import frc.robot.commands.NolanIntakeCommand;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public Joystick gamepad1 = new Joystick(Constants.gamepad1port);
-  public Joystick gamepad2 = new Joystick(Constants.gamepad2port);
+  public Joystick gamepad1 = new Joystick(Constants.gamepad1);
+  public Joystick gamepad2 = new Joystick(Constants.gamepad2);
 
-  public JoystickButton intakeButton = new JoystickButton(gamepad1, Constants.aButtonJoystick0);
+  public JoystickButton intakeButton = new JoystickButton(gamepad1, Constants.aButton);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
