@@ -36,21 +36,24 @@ public class DrivingSubsystem extends SubsystemBase {
   public AHRS ahrs;
 
   public void oDrive(double y1, double y2) {
-    System.out.println(y1);
+
     if (Math.abs(y2) < 0.1 && Math.abs(y1) > 0.1) { 
       differentialDrive.arcadeDrive(-y1, 0.15, true);
-    } else {
+    } 
+
+    else {
       differentialDrive.arcadeDrive(-y1, y2, true);
     }
   }
 
   public void tDrive(double left, double right) {
-    differentialDrive.tankDrive(-left * 0.98, -right * 0.93, true);
+    differentialDrive.tankDrive(-left, -right, true);
   }
 
   /** Creates a new Driving. */
   public DrivingSubsystem() {
     ahrs = new AHRS();
+    ahrs.zeroYaw();
   }
 
   public void periodic() {

@@ -12,17 +12,11 @@ import frc.robot.Constants;
 public class AutoDriveCommand extends CommandBase {
 
   double lOutput = 0;
-  double rOutput = 0;
   double lI = 0;
-  double rI = 0;
   double lDistanceTravelled = 0;
-  double rDistanceTravelled = 0;
   double lError = 0;
-  double rError = 0;
   double lErrorPrevious = 0;
-  double rErrorPrevious = 0;
   double lD = 0;
-  double rD = 0;
   double setpoint = 0;
 
   /** Creates a new AutoCommand. */
@@ -36,27 +30,20 @@ public class AutoDriveCommand extends CommandBase {
   @Override
   public void initialize() {
     Robot.drivingSubsystem.leftEncoder.setSelectedSensorPosition(0);
-    Robot.drivingSubsystem.rightEncoder.setSelectedSensorPosition(0);
     Robot.drivingSubsystem.ahrs.zeroYaw();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // DISTANCE
     SmartDashboard.putNumber("axis", Math.abs(Robot.drivingSubsystem.ahrs.getAngle()));
     lDistanceTravelled = -((Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition() / Constants.oneRotation)
         * (Math.PI * Constants.wheelDiameter));
     lError = setpoint - lDistanceTravelled;
-    System.out.println("lError: " + lError);
     lI += (lError * 1);
     lD = (lError - lErrorPrevious) / .02;
     lOutput = (Constants.kP * lError) + (Constants.kI * lI) + (Constants.kD * lD);
-    // lOutput = (Constants.kP * lError) + (Constants.kI * lI);
     lErrorPrevious = lError;
-
-    // DRIFT
-    System.out.println("gyro: " + Robot.drivingSubsystem.ahrs.getAngle());
   }
 
   // Called once the command ends or is interrupted.
@@ -67,12 +54,10 @@ public class AutoDriveCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("Left output: " + lOutput / 10);
+    System.out.println("Output: " + lOutput / 10);
+    System.out.println("Angle: " + -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
     if (Math.abs(lError) > 0.01) {
-      // double newlOutput = lOutput / 10;
-      // double newrOutput = rOutput / 10;
-      // Robot.drivingSubsystem.tDrive(-(newlOutput), -(newrOutput));
-      Robot.drivingSubsystem.oDrive(-lOutput / 10, 0);
+      Robot.drivingSubsystem.oDrive(-lOutput / 10, -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
       return false;
     } else {
       Robot.drivingSubsystem.tDrive(0, 0);
