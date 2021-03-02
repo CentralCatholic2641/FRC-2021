@@ -54,9 +54,10 @@ public class AutoDriveCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    System.out.println("Error: " + lError);
     System.out.println("Output: " + lOutput / 10);
     System.out.println("Angle: " + -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
-    if (Math.abs(lError) > 0.01) {
+    if (Math.abs(lError) > 4) {
       Robot.drivingSubsystem.oDrive(-lOutput / 10, -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
       return false;
     } else {
