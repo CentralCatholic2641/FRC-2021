@@ -40,7 +40,7 @@ public class TurnCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (current <= desiredAngle) {
+     if (current <= desiredAngle) {
       Robot.drivingSubsystem.oDrive(0, (int) Math.signum(desiredAngle) * 0.4);
       return false;
     } else {
