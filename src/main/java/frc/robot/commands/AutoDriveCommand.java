@@ -31,6 +31,9 @@ public class AutoDriveCommand extends CommandBase {
   public void initialize() {
     Robot.drivingSubsystem.leftEncoder.setSelectedSensorPosition(0);
     Robot.drivingSubsystem.ahrs.zeroYaw();
+    SmartDashboard.delete("error");
+    SmartDashboard.delete("output");
+    SmartDashboard.delete("angle");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -54,15 +57,19 @@ public class AutoDriveCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    SmartDashboard.putNumber("error", lError);
+    SmartDashboard.putNumber("output", lOutput / 10);
+    SmartDashboard.putNumber("angle", -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
+
     System.out.println("Error: " + lError);
     System.out.println("Output: " + lOutput / 10);
     System.out.println("Angle: " + -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
-    if (Math.abs(lError) > 4) {
+    // if (Math.abs(lError) > 4) {
       Robot.drivingSubsystem.oDrive(-lOutput / 10, -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
       return false;
-    } else {
-      Robot.drivingSubsystem.tDrive(0, 0);
-      return true;
-    }
+    // } else {
+    //   Robot.drivingSubsystem.tDrive(0, 0);
+    //   return true;
+    // }
   }
 }

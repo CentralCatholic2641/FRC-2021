@@ -52,9 +52,9 @@ public final class Constants {
 	public static final int rightEncoder = 5;
 
 	// PID-related
-	public static final double kP = 0.8;
-	public static final double kI = 0;
-	public static final double kD = 0;
+	public static final double kP = 0.6;
+	public static final double kI = 0.002;
+	public static final double kD = 0.2;
 	public static final double wheelDiameter = 0.5;
 	public static final double driftCompensation = 0.04;
 	public static final int oneRotation = 4096;
