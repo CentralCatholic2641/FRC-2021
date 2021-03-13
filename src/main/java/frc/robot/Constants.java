@@ -46,6 +46,8 @@ public final class Constants {
 
 	// Miscellaneous motors
 	public static final int intakeMotor = 10;
+	public static final int shooterMotor1 = 10;
+	public static final int shooterMotor2 = 10;
 
 	// Encoders
 	public static final int leftEncoder = 2;

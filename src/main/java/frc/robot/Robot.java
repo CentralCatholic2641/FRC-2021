@@ -13,6 +13,7 @@ import frc.robot.commands.AutoCommandGroup;
 import frc.robot.commands.DrivingCommand;
 import frc.robot.subsystems.DrivingSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
   public static DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static DrivingCommand drivingCommand = new DrivingCommand();
+  public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
