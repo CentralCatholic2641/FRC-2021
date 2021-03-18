@@ -37,17 +37,18 @@ public final class Constants {
 	public static final int gamepad2 = 1;
 
 	// Drivetrain motors
-	public static final int leftmotor1 = 1;
-	public static final int leftmotor2 = 2;
-	public static final int leftmotor3 = 3;
-	public static final int rightmotor1 = 4;
-	public static final int rightmotor2 = 5;
-	public static final int rightmotor3 = 6;
+	public static final int leftmotor1 = 2;
+	public static final int leftmotor2 = 3;
+	// public static final int leftmotor3 = 3;
+	public static final int rightmotor1 = 1;
+	public static final int rightmotor2 = 4;
+	// public static final int rightmotor3 = 6;
 
 	// Miscellaneous motors
-	public static final int intakeMotor = 10;
-	public static final int shooterMotor1 = 10;
-	public static final int shooterMotor2 = 10;
+	public static final int intakeMotor = 5;
+	public static final int shooterMotor1 = 9;
+	public static final int shooterMotor2 = 7;
+	public static final int shooterMotor3 = 8;
 
 	// Encoders
 	public static final int leftEncoder = 2;

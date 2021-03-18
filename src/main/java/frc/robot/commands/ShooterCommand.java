@@ -28,9 +28,12 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void execute() {
     if (motorNumber == 1){
-      Robot.shooterSubsystem.DriveShooterMotor1(.3);
+      Robot.shooterSubsystem.DriveShooterMotor1(-0.5);
+    } else if (motorNumber == 2) {
+      Robot.shooterSubsystem.DriveShooterMotor2(1);
     } else {
-      Robot.shooterSubsystem.DriveShooterMotor2(.3);
+      Robot.shooterSubsystem.DriveShooterMotor3(-1);
+
     }
     
   }
@@ -40,6 +43,7 @@ public class ShooterCommand extends CommandBase {
   public void end(boolean interrupted) {
     Robot.shooterSubsystem.DriveShooterMotor1(0);
     Robot.shooterSubsystem.DriveShooterMotor2(0);
+    Robot.shooterSubsystem.DriveShooterMotor3(0);
 
   }
 

@@ -14,6 +14,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public WPI_TalonSRX shooterMotor1 = new WPI_TalonSRX(Constants.shooterMotor1);
   public WPI_TalonSRX shooterMotor2 = new WPI_TalonSRX(Constants.shooterMotor2);
+  public WPI_TalonSRX shooterMotor3 = new WPI_TalonSRX(Constants.shooterMotor3);
 
 
   public ShooterSubsystem() {
@@ -25,6 +26,10 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void DriveShooterMotor2(double speed) {
     shooterMotor2.set(speed);
+  }
+
+  public void DriveShooterMotor3(double speed) {
+    shooterMotor3.set(speed);
   }
 
   @Override

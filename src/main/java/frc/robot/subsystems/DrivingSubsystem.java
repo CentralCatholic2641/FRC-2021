@@ -18,15 +18,15 @@ public class DrivingSubsystem extends SubsystemBase {
 
   public WPI_TalonSRX leftmotor1 = new WPI_TalonSRX(Constants.leftmotor1);
   public WPI_TalonSRX leftmotor2 = new WPI_TalonSRX(Constants.leftmotor2);
-  public WPI_TalonSRX leftmotor3 = new WPI_TalonSRX(Constants.leftmotor3);
+  // public WPI_TalonSRX leftmotor3 = new WPI_TalonSRX(Constants.leftmotor3);
 
-  public SpeedControllerGroup leftgroup = new SpeedControllerGroup(leftmotor1, leftmotor2, leftmotor3);
+  public SpeedControllerGroup leftgroup = new SpeedControllerGroup(leftmotor1, leftmotor2);
 
   public WPI_TalonSRX rightmotor1 = new WPI_TalonSRX(Constants.rightmotor1);
   public WPI_TalonSRX rightmotor2 = new WPI_TalonSRX(Constants.rightmotor2);
-  public WPI_TalonSRX rightmotor3 = new WPI_TalonSRX(Constants.rightmotor3);
+  // public WPI_TalonSRX rightmotor3 = new WPI_TalonSRX(Constants.rightmotor3);
 
-  public SpeedControllerGroup rightgroup = new SpeedControllerGroup(rightmotor1, rightmotor2, rightmotor3);
+  public SpeedControllerGroup rightgroup = new SpeedControllerGroup(rightmotor1, rightmotor2);
 
   public WPI_TalonSRX leftEncoder = new WPI_TalonSRX(Constants.leftEncoder);
   public WPI_TalonSRX rightEncoder = new WPI_TalonSRX(Constants.rightEncoder);
@@ -37,13 +37,13 @@ public class DrivingSubsystem extends SubsystemBase {
 
   public void oDrive(double y1, double y2) {
 
-    if (Math.abs(y2) < 0.1 && Math.abs(y1) > 0.1) { 
-      differentialDrive.arcadeDrive(-y1, 0.15, true);
-    } 
+    // if (Math.abs(y2) < 0.1 && Math.abs(y1) > 0.1) { 
+    //   differentialDrive.arcadeDrive(-y1, , true);
+    // } 
 
-    else {
-      differentialDrive.arcadeDrive(-y1, y2, true);
-    }
+    // else {
+      differentialDrive.arcadeDrive(y1 * .5, y2, true);
+    // }
   }
 
   public void tDrive(double left, double right) {

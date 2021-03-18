@@ -22,8 +22,9 @@ public class RobotContainer {
   public Joystick gamepad2 = new Joystick(Constants.gamepad2);
 
   public JoystickButton intakeButton = new JoystickButton(gamepad1, Constants.aButton);
-  public JoystickButton shooterButton1 = new JoystickButton(gamepad1, Constants.xButton);
-  public JoystickButton shooterButton2 = new JoystickButton(gamepad1, Constants.yButton);
+  public JoystickButton shooterButton1 = new JoystickButton(gamepad1, Constants.yButton);
+  public JoystickButton shooterButton2 = new JoystickButton(gamepad1, Constants.xButton);
+  public JoystickButton shooterButton3 = new JoystickButton(gamepad1, Constants.bButton);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -43,6 +44,7 @@ public class RobotContainer {
     intakeButton.whileHeld(new IntakeCommand(), true);
     shooterButton1.whileHeld(new ShooterCommand(1), true);
     shooterButton2.whileHeld(new ShooterCommand(2), true);
+    shooterButton3.whileHeld(new ShooterCommand(3), true);
 
   }
 
