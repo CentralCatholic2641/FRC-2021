@@ -27,14 +27,14 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (motorNumber == 1){
-      Robot.shooterSubsystem.DriveShooterMotor1(-0.5);
-    } else if (motorNumber == 2) {
-      Robot.shooterSubsystem.DriveShooterMotor2(1);
-    } else {
-      Robot.shooterSubsystem.DriveShooterMotor3(-1);
+    // if (motorNumber == 1){
+      Robot.shooterSubsystem.DriveShooterMotor1(1);
+    // } else if (motorNumber == 2) {
+      // Robot.shooterSubsystem.DriveShooterMotor2(1);
+    // } else {
+      // Robot.shooterSubsystem.DriveShooterMotor3(-1);
 
-    }
+    // }
     
   }
 
@@ -42,8 +42,8 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     Robot.shooterSubsystem.DriveShooterMotor1(0);
-    Robot.shooterSubsystem.DriveShooterMotor2(0);
-    Robot.shooterSubsystem.DriveShooterMotor3(0);
+    // Robot.shooterSubsystem.DriveShooterMotor2(0);
+    // Robot.shooterSubsystem.DriveShooterMotor3(0);
 
   }
 

@@ -42,7 +42,7 @@ public class DrivingSubsystem extends SubsystemBase {
     // } 
 
     // else {
-      differentialDrive.arcadeDrive(y1 * .5, y2, true);
+      differentialDrive.arcadeDrive(y1, y2, true);
     // }
   }
 

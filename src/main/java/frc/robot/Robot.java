@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoCommandGroup;
 import frc.robot.commands.DrivingCommand;
 import frc.robot.subsystems.DrivingSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -27,7 +26,6 @@ public class Robot extends TimedRobot {
 
   public static RobotContainer robotContainer;
   public static DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
-  public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   public static DrivingCommand drivingCommand = new DrivingCommand();
   public static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   /**

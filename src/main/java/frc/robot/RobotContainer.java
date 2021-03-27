@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ShooterCommand;
 
 /**
@@ -19,12 +18,8 @@ import frc.robot.commands.ShooterCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public Joystick gamepad1 = new Joystick(Constants.gamepad1);
-  public Joystick gamepad2 = new Joystick(Constants.gamepad2);
 
-  public JoystickButton intakeButton = new JoystickButton(gamepad1, Constants.aButton);
-  public JoystickButton shooterButton1 = new JoystickButton(gamepad1, Constants.yButton);
-  public JoystickButton shooterButton2 = new JoystickButton(gamepad1, Constants.xButton);
-  public JoystickButton shooterButton3 = new JoystickButton(gamepad1, Constants.bButton);
+  public JoystickButton shooterButton = new JoystickButton(gamepad1, Constants.bButton);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -41,11 +36,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    intakeButton.whileHeld(new IntakeCommand(), true);
-    shooterButton1.whileHeld(new ShooterCommand(1), true);
-    shooterButton2.whileHeld(new ShooterCommand(2), true);
-    shooterButton3.whileHeld(new ShooterCommand(3), true);
-
+    shooterButton.whileHeld(new ShooterCommand(1), true);
   }
 
   /**
