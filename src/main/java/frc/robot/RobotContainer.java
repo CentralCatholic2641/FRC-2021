@@ -20,6 +20,8 @@ public class RobotContainer {
   public Joystick gamepad1 = new Joystick(Constants.gamepad1);
 
   public JoystickButton shooterButton = new JoystickButton(gamepad1, Constants.bButton);
+  public JoystickButton shooterButton2 = new JoystickButton(gamepad1, Constants.yButton);
+  public JoystickButton shooterButton3 = new JoystickButton(gamepad1, Constants.aButton);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -37,6 +39,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     shooterButton.whileHeld(new ShooterCommand(1), true);
+    shooterButton2.whileHeld(new ShooterCommand(2), true);
+    shooterButton3.whileHeld(new ShooterCommand(3), true);
   }
 
   /**

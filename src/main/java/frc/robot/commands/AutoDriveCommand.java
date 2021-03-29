@@ -29,7 +29,7 @@ public class AutoDriveCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.drivingSubsystem.leftEncoder.setSelectedSensorPosition(0);
+    Robot.drivingSubsystem.encoder.reset();
     Robot.drivingSubsystem.ahrs.zeroYaw();
     SmartDashboard.delete("error");
     SmartDashboard.delete("output");
@@ -40,7 +40,8 @@ public class AutoDriveCommand extends CommandBase {
   @Override
   public void execute() {
     SmartDashboard.putNumber("axis", Math.abs(Robot.drivingSubsystem.ahrs.getAngle()));
-    lDistanceTravelled = -((Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition() / Constants.oneRotation)
+    SmartDashboard.putNumber("distance", Robot.drivingSubsystem.encoder.getDistance());
+    lDistanceTravelled = -((Robot.drivingSubsystem.encoder.getDistance() / Constants.oneRotation)
         * (Math.PI * Constants.wheelDiameter));
     lError = setpoint - lDistanceTravelled;
     lI += (lError * 1);
