@@ -31,6 +31,7 @@ public final class Constants {
 	// Joysticks
 	public static final int joystick1 = 1;
 	public static final int joystick2 = 4;
+	public static final int shooterTrigger = 3;
 
 	// Controllers
 	public static final int gamepad1 = 0;
@@ -46,9 +47,9 @@ public final class Constants {
 
 	// Miscellaneous motors
 	// public static final int intakeMotor = 5;
-	public static final int shooterMotor1 = 9;
-	public static final int shooterMotor2 = 7;
-	public static final int shooterMotor3 = 8;
+	public static final int beltMotor = 9;
+	public static final int shooterMotor = 7;
+	public static final int intakeMotor = 8;
 
 	// Encoders
 	public static final int leftEncoder = 1;
@@ -60,5 +61,5 @@ public final class Constants {
 	public static final double kD = 0.2;
 	public static final double wheelDiameter = 0.5;
 	public static final double driftCompensation = 0.04;
-	public static final int oneRotation = 4096;
+	public static final int oneRotation = 500;
 }
