@@ -5,7 +5,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -16,24 +15,23 @@ public class ShooterSubsystem extends SubsystemBase {
   public WPI_TalonSRX shooterMotor = new WPI_TalonSRX(Constants.shooterMotor);
   public WPI_TalonSRX intakeMotor = new WPI_TalonSRX(Constants.intakeMotor);
 
-
   public ShooterSubsystem() {
   }
 
-  public void DriveShooterMotor1(double speed) {
-    beltMotor.set(-speed / 1.5);
-    intakeMotor.set(-speed / 1.5);
+  public void BeltAndIntake(double speed) {
+    beltMotor.set(Math.signum(speed) * -0.5);
+    intakeMotor.set(Math.signum(speed) * -0.5);
   }
 
-  public void DriveShooterMotor2(double speed) {
-    beltMotor.set(-speed / 1.5);
+  public void BeltAndShooter(double speed) {
+    beltMotor.set(Math.signum(speed) * -0.5);
     shooterMotor.set(speed);
   }
 
-  public void DriveShooterMotor3(double speed) {
-    beltMotor.set(-speed / 1.5);
+  public void All(double speed) {
+    beltMotor.set(Math.signum(speed) * -0.5);
     shooterMotor.set(speed);
-    intakeMotor.set(-speed / 1.5);
+    intakeMotor.set(Math.signum(speed) * -0.5);
   }
 
   @Override

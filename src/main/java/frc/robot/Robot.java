@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
     robotContainer = new RobotContainer();
     //Connects to NetworkTables and then gets the one called VisionTracking
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
-    NetworkTable table = inst.getTable("VisionTracking");
+    NetworkTable table = inst.getTable("Vision");
   }
   
   @Override

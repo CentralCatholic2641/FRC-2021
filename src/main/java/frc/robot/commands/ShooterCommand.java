@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class ShooterCommand extends CommandBase {
@@ -28,22 +29,18 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void execute() {
     if (motorNumber == 1){
-      Robot.shooterSubsystem.DriveShooterMotor1(1);
+      Robot.shooterSubsystem.BeltAndIntake(-Robot.robotContainer.gamepad1.getRawAxis(Constants.shooterSpeed));
     } else if (motorNumber == 2) {
-      Robot.shooterSubsystem.DriveShooterMotor2(1);
-    } else {
-      Robot.shooterSubsystem.DriveShooterMotor3(1);
+      Robot.shooterSubsystem.BeltAndShooter(-Robot.robotContainer.gamepad1.getRawAxis(Constants.shooterSpeed));
+    } else if (motorNumber == 3) {
+      Robot.shooterSubsystem.All(-Robot.robotContainer.gamepad1.getRawAxis(Constants.shooterSpeed));
     }
-    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.shooterSubsystem.DriveShooterMotor1(0);
-    Robot.shooterSubsystem.DriveShooterMotor2(0);
-    // Robot.shooterSubsystem.DriveShooterMotor3(0);
-
+    Robot.shooterSubsystem.All(0);
   }
 
   // Returns true when the command should end.
