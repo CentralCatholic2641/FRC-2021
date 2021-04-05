@@ -29,7 +29,7 @@ public class AutoDriveCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.drivingSubsystem.encoder.reset();
+    Robot.drivingSubsystem.leftEncoder.setSelectedSensorPosition(0);
     Robot.drivingSubsystem.ahrs.zeroYaw();
     SmartDashboard.delete("error");
     SmartDashboard.delete("output");
@@ -40,8 +40,7 @@ public class AutoDriveCommand extends CommandBase {
   @Override
   public void execute() {
     SmartDashboard.putNumber("axis", Math.abs(Robot.drivingSubsystem.ahrs.getAngle()));
-    SmartDashboard.putNumber("distance", Robot.drivingSubsystem.encoder.getDistance());
-    lDistanceTravelled = -((Robot.drivingSubsystem.encoder.getDistance() / Constants.oneRotation)
+    lDistanceTravelled = ((Robot.drivingSubsystem.leftEncoder.getSelectedSensorPosition() / Constants.oneRotation)
         * (Math.PI * Constants.wheelDiameter));
     lError = setpoint - lDistanceTravelled;
     lI += (lError * 1);
@@ -63,8 +62,8 @@ public class AutoDriveCommand extends CommandBase {
     SmartDashboard.putNumber("angle", -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
 
     System.out.println("Error: " + lError);
-    System.out.println("Output: " + lOutput / 10);
-    System.out.println("Angle: " + -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
+    // System.out.println("Output: " + lOutput / 10);
+    // System.out.println("Angle: " + -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
     // if (Math.abs(lError) > 4) {
       Robot.drivingSubsystem.oDrive(-lOutput / 10, -Robot.drivingSubsystem.ahrs.getAngle() * Constants.driftCompensation);
       return false;

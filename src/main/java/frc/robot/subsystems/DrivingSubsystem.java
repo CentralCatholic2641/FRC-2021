@@ -6,7 +6,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,20 +18,16 @@ public class DrivingSubsystem extends SubsystemBase {
 
   public WPI_TalonSRX leftmotor1 = new WPI_TalonSRX(Constants.leftmotor1);
   public WPI_TalonSRX leftmotor2 = new WPI_TalonSRX(Constants.leftmotor2);
-  // public WPI_TalonSRX leftmotor3 = new WPI_TalonSRX(Constants.leftmotor3);
 
   public SpeedControllerGroup leftgroup = new SpeedControllerGroup(leftmotor1, leftmotor2);
 
   public WPI_TalonSRX rightmotor1 = new WPI_TalonSRX(Constants.rightmotor1);
   public WPI_TalonSRX rightmotor2 = new WPI_TalonSRX(Constants.rightmotor2);
-  // public WPI_TalonSRX rightmotor3 = new WPI_TalonSRX(Constants.rightmotor3);
 
   public SpeedControllerGroup rightgroup = new SpeedControllerGroup(rightmotor1, rightmotor2);
 
   public WPI_TalonSRX leftEncoder = new WPI_TalonSRX(Constants.leftEncoder);
   public WPI_TalonSRX rightEncoder = new WPI_TalonSRX(Constants.rightEncoder);
-
-  public Encoder encoder = new Encoder(0, 1);
   
   DifferentialDrive differentialDrive = new DifferentialDrive(leftgroup, rightgroup);
   
@@ -41,22 +36,22 @@ public class DrivingSubsystem extends SubsystemBase {
   public void oDrive(double y1, double y2) {
 
     // if (Math.abs(y2) < 0.1 && Math.abs(y1) > 0.1) { 
-      //   differentialDrive.arcadeDrive(-y1, , true);
-      // } 
-      
-      // else {
-        differentialDrive.arcadeDrive(y1 * .9, y2 * .9, true);
-        // }
-      }
-      
-      public void tDrive(double left, double right) {
-        differentialDrive.tankDrive(-left, -right, true);
-      }
-      
-      /** Creates a new Driving. */
-      public DrivingSubsystem() {
-        ahrs = new AHRS();
-        encoder.setDistancePerPulse(Math.PI * Constants.wheelDiameter / Constants.oneRotation);
+    //   differentialDrive.arcadeDrive(-y1, , true);
+    // } 
+    
+    // else {
+    // System.out.println("y1: " + y1 + " y2: " + y2);
+    differentialDrive.arcadeDrive(y1 * .9, y2 * .9, true);
+    // }
+  }
+ 
+  public void tDrive(double left, double right) {
+    differentialDrive.tankDrive(-left, -right, true);
+  }
+  
+  /** Creates a new Driving. */
+  public DrivingSubsystem() { 
+    ahrs = new AHRS();
     ahrs.zeroYaw();
   }
 
